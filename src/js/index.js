@@ -2,7 +2,7 @@
 const container = document.getElementById("container");
 let selectedText = "";
 let rangeOfText = "";
-let noteContent = JSON.parse(localStorage.getItem("noteContent")) || [];
+let noteContent = JSON.parse(localStorage.getItem("noteContent") || "[]");
 
 function createNewNote(initialContent) {
     let stickyNote = document.createElement("div");
