@@ -1,6 +1,111 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
-    background: #f0f0f0;
-    font-family: Arial, Helvetica, sans-serif;
+    background: #c79fe6;
+    font-family: Trebuchet, Helvetica, sans-serif;
+    color: rgb(84, 53, 112);
     width: 1000px;
     margin: 5%;
+    padding: 5%;
 }
+h1 {
+    text-transform: uppercase;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /*aka flex-flow: row wrap;*/
+}
+
+.addNote {
+   height: 60px;
+   background-color:#996bba ;
+   margin:10px;
+   padding:3px;
+   border-radius: 7%;
+   cursor: pointer;
+}
+
+.bin {
+    width: 25px;
+    height: auto;
+}
+
+.noteRow {
+    background: #d3bee1;
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  .noteEditor {
+    height: 250px;
+    width: 250px;
+    resize: none;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .noteEditor::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .noteControls {
+    height: 50px;
+    width: 250px;
+    padding: 10px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .noteControls div {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    background: #eeeeee;
+    border-radius: 5px;
+    line-height: 30px;
+  }
+  
+  .noteControls img {
+    height: 25px;
+    cursor: pointer;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .capitalize {
+    text-transform: capitalize;
+  }
+  
+  .italic {
+    font-style: italic;
+  }
+  
+  .underline {
+    text-decoration: underline;
+  }
+  
+  .lineThrough {
+    text-decoration: line-through;
+  }
