@@ -1,6 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: #f0f0f0;
+    background: #4793e4;
     font-family: Arial, Helvetica, sans-serif;
-    width: 1000px;
     margin: 5%;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    /*grid-template-rows: repeat(8, 1fr);*/
+    margin-top: 50px;
+    height: 320px;
+    width: 320px;
+    background-color: aliceblue;
+}
+
+.gameboard > div {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
 }
