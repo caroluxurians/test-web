@@ -17,8 +17,10 @@ nums.forEach((col, colIndex) => {
 
 const pieces = [
   {
+    id: "pw1",
     image: "public/pawnWhite.png",
     position: "d2",
+
   },
 ];
 
@@ -26,6 +28,12 @@ pieces.forEach((piece) => {
   const positionDiv = document.getElementById(piece.position);
   const image = document.createElement("img");
   image.setAttribute("src", piece.image);
-  image.style.maxWidth = "90%"
+  image.style.maxWidth = "90%";
+  image.setAttribute("class", "piece");
+  image.setAttribute("id", piece.id);
+  image.setAttribute("draggable", "true");
+  image.addEventListener("dragstart", (ev) => ev.dataTransfer.setData("text/plain", ev.target.id));
   positionDiv.appendChild(image);
+  
 });
+
