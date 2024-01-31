@@ -9,6 +9,11 @@ const pieces = [
     image: "public/pawnWhite.png",
     position: "d2",
   },
+  {
+    id: "pb1",
+    image: "public/pawnBlack.png",
+    position: "d7",
+  }
 ];
 
 let idOfPieceBeingMoved = null;
@@ -54,17 +59,33 @@ nums.forEach((col, colIndex) => {
       // const pieceColor = selectedPiece.id[1];
       // totéž kratší (destrukturalizace):
       const [pieceType, pieceColor] = selectedPiece.id;
-      const currentPosition = selectedPiece.position;
-      const [positionAlpha, positionNum] = currentPosition;
-      console.log(pieceType, pieceColor, positionAlpha, positionNum)
+      const isPieceBlack = pieceColor === "b";
+      const currentPositionAlpha = selectedPiece.position[0];
+      const currentPositionNum = Number(selectedPiece.position[1]);
+      const possibleNewPositionAlpha = possibleNewPosition[0];
+      const possibleNewPositionNum = Number(possibleNewPosition[1]);
+      console.log(pieceType, pieceColor, currentPositionAlpha, currentPositionNum);
       let isMoveLegal = false;
       if (pieceType === "p") {
+        const direction = isPieceBlack ? 1 : -1;
+        if (currentPositionAlpha === possibleNewPositionAlpha) {
+          if (currentPositionNum === possibleNewPositionNum + 1 * direction) {
+            isMoveLegal = true;
+          }
+          if (currentPositionNum === (isPieceBlack ? 7 : 2)
+            && currentPositionNum === possibleNewPositionNum + 2 * direction) {
+            isMoveLegal = true;
+          }
+        }
+      }
 
+      if (isMoveLegal) {
+        selectedPiece.position = possibleNewPosition;
       }
       // if bílej pěšec
       // current position: a2
       // if possibleNewPosition: a3 or a4:
-      selectedPiece.position = possibleNewPosition;
+
       // else nic
       clearBoard();
       renderPieces();
@@ -76,8 +97,8 @@ nums.forEach((col, colIndex) => {
 
 renderPieces();
 
-//let dragStartPosition
-//div.dragStart(e) => {
-//dragStartPosition = e.target.parentNode.getAttribute("divId");
-//}
-//div.addEventListener("dragstart", dragStart);///
+// let dragStartPosition
+// div.dragStart(e) => {
+// dragStartPosition = e.target.parentNode.getAttribute("divId");
+// }
+// div.addEventListener("dragstart", dragStart);///
