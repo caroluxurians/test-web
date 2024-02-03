@@ -50,21 +50,35 @@ const checkMove = (selectedPiece, possibleNewPosition) => {
   const currentPositionNum = Number(selectedPiece.position[1]);
   const possibleNewPositionAlpha = possibleNewPosition[0];
   const possibleNewPositionNum = Number(possibleNewPosition[1]);
+  const currentPositionAlphaIndex = Number(alphas.indexOf(currentPositionAlpha));
+  const possibleNewPositionAlphaIndex = currentPositionAlphaIndex - 1;
+  console.log(currentPositionAlpha, currentPositionAlphaIndex, possibleNewPositionAlpha, possibleNewPositionAlphaIndex);
+  // const possibleNewPositionAlphaIndex1 = currentPositionAlphaIndex + 1;
+  // const possibleNewPositionAlphaIndex2 = currentPositionAlphaIndex - 1;
+  // console.log(possibleNewPositionAlphaIndex1, possibleNewPositionAlphaIndex2);
 
   if (pieceType === "p") {
     const direction = isPieceBlack ? 1 : -1;
     if (currentPositionAlpha === possibleNewPositionAlpha) {
-      if (currentPositionNum === possibleNewPositionNum + 1 * direction) {
-        return true;
-      }
-      if (currentPositionNum === (isPieceBlack ? 7 : 2)
-        && currentPositionNum === possibleNewPositionNum + 2 * direction) {
-        return true;
-      }
+      if (currentPositionNum === possibleNewPositionNum + 1 * direction);
+      return true;
+    }
+    if (currentPositionNum === (isPieceBlack ? 7 : 2)
+      && currentPositionNum === possibleNewPositionNum + 2 * direction) {
+      return true;
+    }
+    if (possibleNewPositionAlphaIndex + 1 === currentPositionAlphaIndex) {
+      return (true);
     }
   }
   return false;
 };
+// podminky:
+// p -> počáteční tah nebo ne ->
+// -počáteční tah -> může o dva
+// -ne počáteční tah ->
+//    -o jeden vpřed když tam nikdo nestojí
+//    -o jeden diagonálně když tam někdo stojí
 
 nums.forEach((col, colIndex) => {
   alphas.forEach((row, rowIndex) => {
@@ -97,9 +111,3 @@ nums.forEach((col, colIndex) => {
 });
 
 renderPieces();
-
-// let dragStartPosition
-// div.dragStart(e) => {
-// dragStartPosition = e.target.parentNode.getAttribute("divId");
-// }
-// div.addEventListener("dragstart", dragStart);///
