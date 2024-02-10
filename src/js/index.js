@@ -85,7 +85,86 @@ const pieces = [
     image: "public/pawnBlack.png",
     position: "h7",
   },
-
+  {
+    id: "rw1",
+    image: "public/rookWhite.png",
+    position: "a1",
+  },
+  {
+    id: "rw2",
+    image: "public/rookWhite.png",
+    position: "h1",
+  },
+  {
+    id: "rb1",
+    image: "public/rookBlack.png",
+    position: "a8",
+  },
+  {
+    id: "rb2",
+    image: "public/rookBlack.png",
+    position: "h8",
+  },
+  {
+    id: "hw1",
+    image: "public/horseWhite.png",
+    position: "b1",
+  },
+  {
+    id: "hw2",
+    image: "public/horseWhite.png",
+    position: "g1",
+  },
+  {
+    id: "hb1",
+    image: "public/horseBlack.png",
+    position: "b8",
+  },
+  {
+    id: "hb2",
+    image: "public/horseBlack.png",
+    position: "g8",
+  },
+  {
+    id: "bw1",
+    image: "public/bishopWhite.png",
+    position: "c1",
+  },
+  {
+    id: "bw2",
+    image: "public/bishopWhite.png",
+    position: "f1",
+  },
+  {
+    id: "bb1",
+    image: "public/bishopBlack.png",
+    position: "c8",
+  },
+  {
+    id: "bb2",
+    image: "public/bishopBlack.png",
+    position: "f8",
+  },
+  {
+    id: "qw",
+    image: "public/queenWhite.png",
+    position: "d1",
+  },
+  {
+    id: "qb",
+    image: "public/queenBlack.png",
+    position: "d8",
+  },
+  {
+    id: "kw",
+    image: "public/kingWhite.png",
+    position: "e1",
+  },
+  {
+    id: "kb",
+    image: "public/kingBlack.png",
+    position: "e8",
+  },
 ];
 
 let idOfPieceBeingMoved = null;
@@ -127,10 +206,10 @@ const checkMove = (selectedPiece, possibleNewPosition) => {
   const possibleNewPositionNum = Number(possibleNewPosition[1]);
   const currentPositionAlphaIndex = alphas.indexOf(currentPositionAlpha);
   const possibleNewPositionAlphaIndex = alphas.indexOf(possibleNewPositionAlpha);
-  console.log(currentPositionAlpha,
-    currentPositionAlphaIndex, possibleNewPositionAlpha, possibleNewPositionAlphaIndex);
+  // console.log(currentPositionAlpha,
+  //  currentPositionAlphaIndex, possibleNewPositionAlpha, possibleNewPositionAlphaIndex);
   const pieceOnTarget = pieces.find((el) => el.position === possibleNewPosition);
-  console.log(pieceOnTarget);
+  // console.log(pieceOnTarget);
   if (pieceType === "p") {
     const direction = isPieceBlack ? 1 : -1;
     if (currentPositionAlpha === possibleNewPositionAlpha) {
