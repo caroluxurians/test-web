@@ -1,169 +1,299 @@
 const board = document.querySelector("#gameboard");
 const trash = document.querySelector("#trash");
 
-const alphas = "abcdefgh".split("");
-const nums = "87654321".split("");
+const arr = [0, 1, 2, 3, 4, 5, 6, 7];
+
+const getPosFromDivId = (id) => ({ x: Number(id[1]), y: Number(id[2]) });
+const compareCoords = (set1, set2) => set1.x === set2.x && set1.y === set2.y;
 
 const pieces = [
   {
     id: "pw1",
     image: "public/pawnWhite.png",
     position: "a2",
+    coordinates: {
+      x: 0,
+      y: 6,
+    },
   },
   {
     id: "pw2",
     image: "public/pawnWhite.png",
     position: "b2",
+    coordinates: {
+      x: 1,
+      y: 6,
+    },
   },
   {
     id: "pw3",
     image: "public/pawnWhite.png",
     position: "c2",
+    coordinates: {
+      x: 2,
+      y: 6,
+    },
   },
   {
     id: "pw4",
     image: "public/pawnWhite.png",
     position: "d2",
+    coordinates: {
+      x: 3,
+      y: 6,
+    },
   },
   {
     id: "pw5",
     image: "public/pawnWhite.png",
     position: "e2",
+    coordinates: {
+      x: 4,
+      y: 6,
+    },
   },
   {
     id: "pw6",
     image: "public/pawnWhite.png",
     position: "f2",
+    coordinates: {
+      x: 5,
+      y: 6,
+    },
   },
   {
     id: "pw7",
     image: "public/pawnWhite.png",
     position: "g2",
+    coordinates: {
+      x: 6,
+      y: 6,
+    },
   },
   {
     id: "pw8",
     image: "public/pawnWhite.png",
     position: "h2",
+    coordinates: {
+      x: 7,
+      y: 6,
+    },
   },
   {
     id: "pb1",
     image: "public/pawnBlack.png",
     position: "a7",
+    coordinates: {
+      x: 0,
+      y: 1,
+    },
   },
   {
     id: "pb2",
     image: "public/pawnBlack.png",
     position: "b7",
+    coordinates: {
+      x: 1,
+      y: 1,
+    },
   },
   {
     id: "pb3",
     image: "public/pawnBlack.png",
     position: "c7",
+    coordinates: {
+      x: 2,
+      y: 1,
+    },
   },
   {
     id: "pb4",
     image: "public/pawnBlack.png",
     position: "d7",
+    coordinates: {
+      x: 3,
+      y: 1,
+    },
   },
   {
     id: "pb5",
     image: "public/pawnBlack.png",
     position: "e7",
+    coordinates: {
+      x: 4,
+      y: 1,
+    },
   },
   {
     id: "pb6",
     image: "public/pawnBlack.png",
     position: "f7",
+    coordinates: {
+      x: 5,
+      y: 1,
+    },
   },
   {
     id: "pb7",
     image: "public/pawnBlack.png",
     position: "g7",
+    coordinates: {
+      x: 6,
+      y: 1,
+    },
   },
   {
     id: "pb8",
     image: "public/pawnBlack.png",
     position: "h7",
+    coordinates: {
+      x: 7,
+      y: 1,
+    },
   },
   {
     id: "rw1",
     image: "public/rookWhite.png",
     position: "a1",
+    coordinates: {
+      x: 0,
+      y: 7,
+    },
   },
   {
     id: "rw2",
     image: "public/rookWhite.png",
     position: "h1",
+    coordinates: {
+      x: 7,
+      y: 7,
+    },
   },
   {
     id: "rb1",
     image: "public/rookBlack.png",
     position: "a8",
+    coordinates: {
+      x: 0,
+      y: 0,
+    },
   },
   {
     id: "rb2",
     image: "public/rookBlack.png",
     position: "h8",
+    coordinates: {
+      x: 7,
+      y: 0,
+    },
   },
   {
     id: "hw1",
     image: "public/horseWhite.png",
     position: "b1",
+    coordinates: {
+      x: 1,
+      y: 7,
+    },
   },
   {
     id: "hw2",
     image: "public/horseWhite.png",
     position: "g1",
+    coordinates: {
+      x: 6,
+      y: 7,
+    },
   },
   {
     id: "hb1",
     image: "public/horseBlack.png",
     position: "b8",
+    coordinates: {
+      x: 1,
+      y: 0,
+    },
   },
   {
     id: "hb2",
     image: "public/horseBlack.png",
     position: "g8",
+    coordinates: {
+      x: 6,
+      y: 0,
+    },
   },
   {
     id: "bw1",
     image: "public/bishopWhite.png",
     position: "c1",
+    coordinates: {
+      x: 2,
+      y: 7,
+    },
   },
   {
     id: "bw2",
     image: "public/bishopWhite.png",
     position: "f1",
+    coordinates: {
+      x: 5,
+      y: 7,
+    },
   },
   {
     id: "bb1",
     image: "public/bishopBlack.png",
     position: "c8",
+    coordinates: {
+      x: 2,
+      y: 0,
+    },
   },
   {
     id: "bb2",
     image: "public/bishopBlack.png",
     position: "f8",
+    coordinates: {
+      x: 5,
+      y: 0,
+    },
   },
   {
     id: "qw",
     image: "public/queenWhite.png",
     position: "d1",
+    coordinates: {
+      x: 3,
+      y: 7,
+    },
   },
   {
     id: "qb",
     image: "public/queenBlack.png",
     position: "d8",
+    coordinates: {
+      x: 3,
+      y: 0,
+    },
   },
   {
     id: "kw",
     image: "public/kingWhite.png",
     position: "e1",
+    coordinates: {
+      x: 4,
+      y: 7,
+    },
   },
   {
     id: "kb",
     image: "public/kingBlack.png",
     position: "e8",
+    coordinates: {
+      x: 4,
+      y: 0,
+    },
   },
 ];
 
@@ -176,12 +306,12 @@ const clearBoard = () => {
 
 const renderPieces = () => {
   pieces.forEach((piece) => {
-    const positionDiv = document.getElementById(piece.position);
+    const positionDiv = document.getElementById(`d${piece.coordinates.x}${piece.coordinates.y}`);
     const image = document.createElement("img");
     image.setAttribute("src", piece.image);
     image.setAttribute("class", "piece");
     image.setAttribute("id", piece.id);
-    if (piece.position !== "trash") {
+    if (piece.coordinates.x !== -1 && piece.coordinates.y !== -1) {
       image.style.width = "100%";
       image.style.objectFit = "contain";
       image.setAttribute("draggable", "true");
@@ -189,8 +319,10 @@ const renderPieces = () => {
         idOfPieceBeingMoved = piece.id;
         ev.dataTransfer.setData("image/png", ev.target.id);
       });
+      positionDiv.appendChild(image);
+    } else {
+      trash.appendChild(image);
     }
-    positionDiv.appendChild(image);
   });
 };
 
@@ -200,59 +332,73 @@ const checkMove = (selectedPiece, possibleNewPosition) => {
   // totéž kratší (destrukturalizace):
   const [pieceType, pieceColor] = selectedPiece.id;
   const isPieceBlack = pieceColor === "b";
-  const currentPositionAlpha = selectedPiece.position[0];
-  const currentPositionNum = Number(selectedPiece.position[1]);
-  const possibleNewPositionAlpha = possibleNewPosition[0];
-  const possibleNewPositionNum = Number(possibleNewPosition[1]);
-  const currentPositionAlphaIndex = alphas.indexOf(currentPositionAlpha);
-  const possibleNewPositionAlphaIndex = alphas.indexOf(possibleNewPositionAlpha);
-  // console.log(currentPositionAlpha,
-  //  currentPositionAlphaIndex, possibleNewPositionAlpha, possibleNewPositionAlphaIndex);
-  const pieceOnTarget = pieces.find((el) => el.position === possibleNewPosition);
-  // console.log(pieceOnTarget);
+  const curX = selectedPiece.coordinates.x;
+  const curY = selectedPiece.coordinates.y;
+  const posX = possibleNewPosition.x;
+  const posY = possibleNewPosition.y;
+  const pieceOnTarget = pieces
+    .find((piece) => compareCoords(piece.coordinates, possibleNewPosition));
+
   if (pieceType === "p") {
-    const direction = isPieceBlack ? 1 : -1;
-    if (currentPositionAlpha === possibleNewPositionAlpha) {
-      if (currentPositionNum === possibleNewPositionNum + 1 * direction) {
+    const direction = isPieceBlack ? -1 : 1;
+    if (curX === posX) {
+      if (curY === posY + 1 * direction) {
         if (!pieceOnTarget) {
           return true;
         }
       }
 
-      if (currentPositionNum === (isPieceBlack ? 7 : 2)
-        && currentPositionNum === possibleNewPositionNum + 2 * direction) {
-        return true;
+      if (curY === (isPieceBlack ? 1 : 6)
+        && curY === posY + 2 * direction) {
+        if (!pieceOnTarget) {
+          return true;
+        }
       }
     }
-    if (possibleNewPositionAlphaIndex + 1 === currentPositionAlphaIndex
-      || possibleNewPositionAlphaIndex - 1 === currentPositionAlphaIndex) {
-      if (currentPositionNum === possibleNewPositionNum + 1 * direction) {
+    if (posX + 1 === curX || posX - 1 === curX) {
+      if (curY === posY + 1 * direction) {
         if (pieceOnTarget) {
-          pieceOnTarget.position = "trash";
+          pieceOnTarget.coordinates = { x: -1, y: -1 };
           return true;
         }
       }
     }
   }
+  if (pieceType === "r") {
+    if (curX === posX
+      || curY === posY) {
+      const positionRange = [curY, posY]
+        .sort((a, b) => Number(a) - Number(b));
+      if (curX === posX) {
+        const numbersBetween = arr.slice(positionRange[0] + 1, positionRange[1]);
+        console.log(numbersBetween);
+        const positionsBetween = [];
+        numbersBetween.forEach((number) => {
+          positionsBetween.push({ x: curX, y: number });
+        });
+        console.log(positionsBetween);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const position of positionsBetween) {
+          if (pieces.some((piece) => compareCoords(piece.coordinates, position))) {
+            return false;
+          }
+        }
+        if (pieceOnTarget) {
+          pieceOnTarget.coordinates = { x: -1, y: -1 };
+          return true;
+        }
+      }
+      return true;
+    }
+  }
   return false;
 };
 
-// podminky:
-// p -> počáteční tah nebo ne ->
-// -počáteční tah -> může o dva
-// -ne počáteční tah ->
-//    -o jeden vpřed když tam nikdo nestojí
-//    -o jeden diagonálně když tam někdo stojí
-
-// is black /white
-// check if possible new position occupied opačnou barvou
-// když tam šloupnu figurka zmizne
-
-nums.forEach((col, colIndex) => {
-  alphas.forEach((row, rowIndex) => {
-    const divId = `${row}${col}`;
+arr.forEach((col) => {
+  arr.forEach((row) => {
+    const divId = `d${row}${col}`;
     const div = document.createElement("div");
-    if ((colIndex + rowIndex) % 2 === 1) {
+    if ((col + row) % 2 === 1) {
       div.setAttribute("class", "black");
     }
     div.addEventListener("dragenter", (e) => {
@@ -262,13 +408,14 @@ nums.forEach((col, colIndex) => {
       e.preventDefault();
     });
     div.addEventListener("drop", (e) => {
-      const possibleNewPosition = e.target.tagName === "IMG"
+      const targetDivId = e.target.tagName === "IMG"
         ? e.target.parentElement.id
         : e.target.id;
+      const possibleNewPosition = getPosFromDivId(targetDivId);
       const selectedPiece = pieces.find((el) => el.id === idOfPieceBeingMoved);
       const isMoveLegal = checkMove(selectedPiece, possibleNewPosition);
       if (isMoveLegal) {
-        selectedPiece.position = possibleNewPosition;
+        selectedPiece.coordinates = possibleNewPosition;
       }
       clearBoard();
       renderPieces();
